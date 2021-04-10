@@ -3,10 +3,8 @@ package edu.logintegra.springsecuritydemo.auth;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -31,14 +29,19 @@ public class Person {
     @ColumnDefault(value = "true")
     Boolean enabled = true;
 
-    @Column(nullable = false)
-    @CreatedDate
-    @Temporal(TemporalType.TIMESTAMP)
-    Date dateCreated;
-
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "person_authorities",
             joinColumns = @JoinColumn(name = "person_id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id"))
     Set<Authority> authorities;
+
+    public Person(String username, String password, String name) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

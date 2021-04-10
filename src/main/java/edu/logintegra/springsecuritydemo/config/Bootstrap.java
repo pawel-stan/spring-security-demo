@@ -2,6 +2,7 @@ package edu.logintegra.springsecuritydemo.config;
 
 import edu.logintegra.springsecuritydemo.auth.Authority;
 import edu.logintegra.springsecuritydemo.auth.AuthorityRepository;
+import edu.logintegra.springsecuritydemo.auth.PersonService;
 import edu.logintegra.springsecuritydemo.enums.AuthorityName;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
@@ -10,9 +11,11 @@ import org.springframework.stereotype.Service;
 public class Bootstrap implements InitializingBean {
 
     private final AuthorityRepository authorityRepository;
+    private final PersonService personService;
 
-    public Bootstrap(AuthorityRepository authorityRepository) {
+    public Bootstrap(AuthorityRepository authorityRepository, PersonService personService) {
         this.authorityRepository = authorityRepository;
+        this.personService = personService;
     }
 
     @Override
@@ -20,6 +23,8 @@ public class Bootstrap implements InitializingBean {
         System.out.println("Rozpoczynamy przygotowywanie aplikacji...");
 
         prepareAuthorities();
+
+        personService.prepareAdminUser();
     }
 
     private void prepareAuthorities() {

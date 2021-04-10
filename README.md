@@ -10,6 +10,8 @@ Przed uruchomieniem projektu przygotuj pustą bazę danych PostgreSQL.
 - `spring.datasource.username` — nazwa użytkownika w bazie danych;
 - `spring.datasource.password` — hasło użytkownika w bazie danych;
 - `my.variable.name` — zmienna tylko to celów testowych, jako przykład użycia w kodzie (`Bootstrap.java`);
+- `my.admin.username` — login głównego administratora;
+- `my.admin.password` — hasło administratora.
 
 Przykład użycia jako argumenty JVM:
 
