@@ -1,4 +1,9 @@
-section.container {
-    padding: 1rem;
-    color: darkcyan;
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    background-color: #565656;
+    color: snow;
 }

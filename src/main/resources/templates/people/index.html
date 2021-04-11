@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,7 +18,30 @@
 </head>
 <body>
 <section class="container">
-    Spring Security Demo
+    <h1>
+        Użytkownicy
+    </h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Login
+            </th>
+            <th>
+                Nazwa
+            </th>
+        </tr>
+        </thead>
+        <tr th:each="person : ${people}">
+            <td th:text="${person.id}"></td>
+            <td th:text="${person.username}"></td>
+            <td th:text="${person.name}"></td>
+        </tr>
+    </table>
 </section>
 </body>
 </html>
