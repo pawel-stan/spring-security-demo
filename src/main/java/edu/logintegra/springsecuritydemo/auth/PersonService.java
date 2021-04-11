@@ -45,10 +45,14 @@ public class PersonService {
         savePerson(person);
     }
 
-    private void savePerson(Person person) {
+    protected void savePerson(Person person) {
         String hashedPassword = bCryptPasswordEncoder.encode(person.password);
         person.setPassword(hashedPassword);
 
         personRepository.save(person);
+    }
+
+    List<Person> findAllUsers() {
+        return personRepository.findAll();
     }
 }

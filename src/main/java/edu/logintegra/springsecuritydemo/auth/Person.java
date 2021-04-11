@@ -2,6 +2,7 @@ package edu.logintegra.springsecuritydemo.auth;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @Getter
+@Setter
 public class Person {
 
     @Id
@@ -39,13 +41,5 @@ public class Person {
         this.username = username;
         this.password = password;
         this.name = name;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setAuthorities(Set<Authority> authorities) {
-        this.authorities = authorities;
     }
 }

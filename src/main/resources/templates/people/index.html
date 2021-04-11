@@ -42,6 +42,12 @@
             <td th:text="${person.name}"></td>
         </tr>
     </table>
+
+    <div>
+        <a th:href="@{'/people/create/'}"
+           th:text="Dodaj"
+           class="btn btn-primary"></a>
+    </div>
 </section>
 </body>
 </html>
