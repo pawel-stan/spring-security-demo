@@ -78,8 +78,23 @@
             </div>
         </div>
 
+        <div class="mb-3">
+            Uprawnienia:
+
+            <p th:each="authority : ${authorities}">
+                <input type="checkbox" name="authorities"
+                       th:value="${authority.id}"
+                       th:field="*{authorities}"/>
+
+                <label th:text="#{${'authority.' + authority.name}}"
+                       th:for="${#ids.prev('authorities')}"></label>
+            </p>
+        </div>
+
         <div>
             <button type="submit" class="btn btn-primary" th:text="Zapisz"></button>
+
+            <a th:href="@{/people/}" class="btn btn-default" th:text="Użytkownicy"></a>
         </div>
     </form>
 </section>

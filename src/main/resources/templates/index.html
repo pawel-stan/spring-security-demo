@@ -22,6 +22,10 @@
 
     <hr/>
 
+    <a th:href="@{/people/}" class="btn btn-default mb-2" th:text="Użytkownicy"></a>
+
+    <hr/>
+
     <form th:action="@{/logout}" method="post" class="form-inline">
         <input type="submit" th:value="#{login.logout}" class="btn btn-secondary"/>
     </form>

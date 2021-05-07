@@ -7,15 +7,18 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/people")
 public class PersonController {
 
+    private final AuthorityRepository authorityRepository;
     private final PersonService personService;
     private final PersonRepository personRepository;
 
-    public PersonController(PersonService personService, PersonRepository personRepository) {
+    public PersonController(AuthorityRepository authorityRepository, PersonService personService, PersonRepository personRepository) {
+        this.authorityRepository = authorityRepository;
         this.personService = personService;
         this.personRepository = personRepository;
     }
@@ -31,8 +34,12 @@ public class PersonController {
     @GetMapping("/create")
     @Secured("ROLE_CREATE_USER")
     ModelAndView create() {
+        List<Authority> authorities = authorityRepository.findAll();
+
         ModelAndView modelAndView = new ModelAndView("people/create");
+        modelAndView.addObject("authorities", authorities);
         modelAndView.addObject("person", new Person());
+
         return modelAndView;
     }
 
@@ -44,6 +51,7 @@ public class PersonController {
             return index();
         }
         ModelAndView modelAndView = new ModelAndView("people/create");
+        modelAndView.addObject("authorities", authorityRepository.findAll());
         modelAndView.addObject("person", person);
         return modelAndView;
     }
@@ -55,6 +63,7 @@ public class PersonController {
 
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("people/create");
+            modelAndView.addObject("authorities", authorityRepository.findAll());
             modelAndView.addObject("person", person);
             return modelAndView;
         }
