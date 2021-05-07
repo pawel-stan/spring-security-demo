@@ -1,11 +1,14 @@
 package edu.logintegra.springsecuritydemo.auth;
 
+import edu.logintegra.springsecuritydemo.validators.UniqueUsername;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
@@ -18,12 +21,18 @@ public class Person {
     @GeneratedValue
     Long id;
 
+    @NotEmpty
+    @Size(min = 5, max = 255)
+    @UniqueUsername
     @Column(nullable = false, unique = true)
     String username;
 
+    @Size(min = 8, max = 100)
     @Column(nullable = false)
     String password;
 
+    @NotEmpty
+    @Size(min = 3, max = 255)
     @Column(nullable = false)
     String name;
 
