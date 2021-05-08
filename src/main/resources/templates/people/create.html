@@ -76,6 +76,23 @@
                            th:errors="*{password}"></small>
                 </div>
             </div>
+
+            <div class="mb-3">
+                <div>
+                    <label for="repeated-password">Powtórz hasło</label>
+                </div>
+                <div>
+                    <input id="repeated-password"
+                           type="password"
+                           th:field="*{repeatedPassword}"
+                           placeholder="Hasło"
+                           th:class="'form-control ' + ${#fields.hasErrors('repeatedPassword') ? 'is-invalid' : ''}"/>
+
+                    <small class="text-danger"
+                           th:if="${#fields.hasErrors('repeatedPassword')}"
+                           th:errors="*{repeatedPassword}"></small>
+                </div>
+            </div>
         </div>
 
         <div class="mb-3">

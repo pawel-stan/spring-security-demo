@@ -1,6 +1,7 @@
 package edu.logintegra.springsecuritydemo.auth;
 
 import edu.logintegra.springsecuritydemo.validators.UniqueUsername;
+import edu.logintegra.springsecuritydemo.validators.ValidPasswords;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
+@ValidPasswords
 public class Person {
 
     @Id
@@ -27,9 +29,11 @@ public class Person {
     @Column(nullable = false, unique = true)
     String username;
 
-    @Size(min = 8, max = 100)
     @Column(nullable = false)
     String password;
+
+    @Transient
+    String repeatedPassword;
 
     @NotEmpty
     @Size(min = 3, max = 255)
