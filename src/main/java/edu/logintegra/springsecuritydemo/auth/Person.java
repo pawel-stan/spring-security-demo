@@ -17,6 +17,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ValidPasswords
+@UniqueUsername
 public class Person {
 
     @Id
@@ -25,7 +26,6 @@ public class Person {
 
     @NotEmpty
     @Size(min = 5, max = 255)
-    @UniqueUsername
     @Column(nullable = false, unique = true)
     String username;
 
